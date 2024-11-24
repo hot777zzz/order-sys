@@ -24,6 +24,12 @@ export const MOCK_USERS: UserInfo[] = [
     roles: ['company'],
     username: 'company',
   },
+  {
+    id: 3,
+    password: '123456',
+    roles: ['admin'],
+    username: 'admin',
+  },
 ];
 
 export const MOCK_CODES = [
