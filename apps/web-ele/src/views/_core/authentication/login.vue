@@ -13,18 +13,18 @@ defineOptions({ name: 'Login' });
 
 const authStore = useAuthStore();
 
-const MOCK_USER_OPTIONS: BasicOption[] = [
+const ROLE_USER_OPTIONS: BasicOption[] = [
   {
-    label: 'Super',
-    value: 'vben',
+    label: '学校',
+    value: 'school',
   },
   {
-    label: 'Admin',
-    value: 'admin',
+    label: '教育局',
+    value: 'edu',
   },
   {
-    label: 'User',
-    value: 'jack',
+    label: '餐饮公司',
+    value: 'company',
   },
 ];
 
@@ -33,38 +33,20 @@ const formSchema = computed((): VbenFormSchema[] => {
     {
       component: 'VbenSelect',
       componentProps: {
-        options: MOCK_USER_OPTIONS,
-        placeholder: $t('authentication.selectAccount'),
+        options: ROLE_USER_OPTIONS,
+        placeholder: '请选择单位',
       },
-      fieldName: 'selectAccount',
+      fieldName: 'roles',
       label: $t('authentication.selectAccount'),
-      rules: z
-        .string()
-        .min(1, { message: $t('authentication.selectAccount') })
-        .optional()
-        .default('vben'),
+      rules: z.string().min(1, { message: '请选择单位' }),
+      // .optional()
     },
     {
       component: 'VbenInput',
       componentProps: {
         placeholder: $t('authentication.usernameTip'),
       },
-      dependencies: {
-        trigger(values, form) {
-          if (values.selectAccount) {
-            const findUser = MOCK_USER_OPTIONS.find(
-              (item) => item.value === values.selectAccount,
-            );
-            if (findUser) {
-              form.setValues({
-                password: '123456',
-                username: findUser.value,
-              });
-            }
-          }
-        },
-        triggerFields: ['selectAccount'],
-      },
+
       fieldName: 'username',
       label: $t('authentication.username'),
       rules: z.string().min(1, { message: $t('authentication.usernameTip') }),
@@ -93,6 +75,12 @@ const formSchema = computed((): VbenFormSchema[] => {
   <AuthenticationLogin
     :form-schema="formSchema"
     :loading="authStore.loginLoading"
+    :show-code-login="false"
+    :show-qrcode-login="false"
+    :show-register="false"
+    :show-third-party-login="false"
+    sub-title="欢迎来到订餐系统"
+    title="订餐系统"
     @submit="authStore.authLogin"
   />
 </template>

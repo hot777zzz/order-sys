@@ -1,19 +1,9 @@
 {
-  "name": "@vben/web-ele",
-  "version": "5.4.7",
+  "name": "order-sys",
+  "version": "0.0.1",
   "homepage": "https://vben.pro",
   "bugs": "https://github.com/vbenjs/vue-vben-admin/issues",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vbenjs/vue-vben-admin.git",
-    "directory": "apps/web-ele"
-  },
   "license": "MIT",
-  "author": {
-    "name": "vben",
-    "email": "ann.vben@gmail.com",
-    "url": "https://github.com/anncwb"
-  },
   "type": "module",
   "scripts": {
     "build": "pnpm vite build --mode production",

@@ -30,7 +30,7 @@ export function verifyAccessToken(
   if (!authHeader?.startsWith('Bearer')) {
     return null;
   }
-
+  // user的token获取
   const token = authHeader.split(' ')[1];
   try {
     const decoded = jwt.verify(token, ACCESS_TOKEN_SECRET) as UserPayload;
